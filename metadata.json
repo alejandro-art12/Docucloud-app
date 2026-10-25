@@ -1,0 +1,6 @@
+{
+  "name": "Docucloud",
+  "description": "Bóveda segura de documentos en la nube con 10 GB de almacenamiento aislado por cuenta. Tu información segura, siempre a tu alcance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

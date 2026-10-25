@@ -1,0 +1,259 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Pillar 1 / Phase 4.1: Global Default-Deny Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Hardened Global Primitives
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Blueprint Validation Helper: User (10 GB = 10737418240 bytes)
+    function isValidUser(data) {
+      return data.keys().hasAll([
+          'uid',
+          'fullName',
+          'email',
+          'usedStorageBytes',
+          'maxStorageBytes',
+          'createdAt',
+          'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'uid',
+          'fullName',
+          'email',
+          'usedStorageBytes',
+          'maxStorageBytes',
+          'createdAt',
+          'updatedAt',
+          'username',
+          'phone',
+          'countryCode',
+          'bio',
+          'accountType',
+          'dateFormat',
+          'securityAlerts'
+        ]) &&
+        data.uid is string &&
+        data.uid.size() >= 1 &&
+        data.uid.size() <= 128 &&
+        data.uid.matches('^[a-zA-Z0-9_\\-]+$') &&
+        data.uid == request.auth.uid &&
+        data.fullName is string &&
+        data.fullName.size() >= 1 &&
+        data.fullName.size() <= 100 &&
+        data.email is string &&
+        data.email.size() >= 3 &&
+        data.email.size() <= 254 &&
+        data.usedStorageBytes is int &&
+        data.usedStorageBytes >= 0 &&
+        data.usedStorageBytes <= 10737418240 &&
+        data.maxStorageBytes is int &&
+        data.maxStorageBytes == 10737418240 &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp &&
+        (!('username' in data) || (
+          data.username is string &&
+          data.username.size() >= 1 &&
+          data.username.size() <= 40 &&
+          data.username.matches('^[a-zA-Z0-9_.\\-]+$')
+        )) &&
+        (!('phone' in data) || (
+          data.phone is string &&
+          data.phone.size() <= 30
+        )) &&
+        (!('countryCode' in data) || (
+          data.countryCode is string &&
+          data.countryCode.size() <= 10
+        )) &&
+        (!('bio' in data) || (
+          data.bio is string &&
+          data.bio.size() <= 300
+        )) &&
+        (!('accountType' in data) || (
+          data.accountType is string &&
+          data.accountType.size() <= 20 &&
+          data.accountType in ['personal', 'independent']
+        )) &&
+        (!('dateFormat' in data) || (
+          data.dateFormat is string &&
+          data.dateFormat.size() <= 20 &&
+          data.dateFormat in ['DD/MM/YYYY', 'MM/DD/YYYY', 'YYYY-MM-DD']
+        )) &&
+        (!('securityAlerts' in data) || (
+          data.securityAlerts is bool
+        ));
+    }
+
+    // Blueprint Validation Helper: Document
+    function isValidDocument(data) {
+      return data.keys().hasAll([
+          'userId',
+          'name',
+          'category',
+          'type',
+          'sizeBytes',
+          'starred',
+          'uploadedAt',
+          'updatedAt'
+        ]) &&
+        data.keys().hasOnly([
+          'userId',
+          'name',
+          'category',
+          'type',
+          'sizeBytes',
+          'starred',
+          'uploadedAt',
+          'updatedAt'
+        ]) &&
+        data.userId is string &&
+        data.userId.size() >= 1 &&
+        data.userId.size() <= 128 &&
+        data.userId.matches('^[a-zA-Z0-9_\\-]+$') &&
+        data.userId == request.auth.uid &&
+        data.name is string &&
+        data.name.size() >= 1 &&
+        data.name.size() <= 120 &&
+        data.category is string &&
+        data.category.size() >= 1 &&
+        data.category.size() <= 30 &&
+        data.category in ['Académicos', 'Personales', 'Trabajo', 'Certificados', 'Otros'] &&
+        data.type is string &&
+        data.type.size() >= 1 &&
+        data.type.size() <= 10 &&
+        data.type in ['pdf', 'image', 'doc', 'xls'] &&
+        data.sizeBytes is int &&
+        data.sizeBytes > 0 &&
+        data.sizeBytes <= 10737418240 &&
+        data.starred is bool &&
+        data.uploadedAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    // Collection 1: Isolated User Accounts & 10 GB Quota Ledger
+    match /users/{userId} {
+      allow get: if isSignedIn() &&
+        isValidId(userId) &&
+        request.auth.uid == userId;
+
+      allow list: if false;
+
+      allow create: if isVerifiedUser() &&
+        isValidId(userId) &&
+        request.auth.uid == userId &&
+        isValidUser(incoming()) &&
+        incoming().usedStorageBytes == 0 &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+
+      allow update: if isVerifiedUser() &&
+        isValidId(userId) &&
+        isValidUser(incoming()) &&
+        request.auth.uid == userId &&
+        existing().uid == request.auth.uid &&
+        incoming().uid == existing().uid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().maxStorageBytes == existing().maxStorageBytes &&
+        incoming().updatedAt == request.time && (
+          // Action 1: Profile & Preferences Update
+          (
+            incoming().diff(existing()).affectedKeys().hasOnly([
+              'fullName',
+              'email',
+              'username',
+              'phone',
+              'countryCode',
+              'bio',
+              'accountType',
+              'dateFormat',
+              'securityAlerts',
+              'updatedAt'
+            ]) &&
+            incoming().usedStorageBytes == existing().usedStorageBytes
+          ) ||
+          // Action 2: Atomic Storage Quota Ledger Adjustment
+          (
+            incoming().diff(existing()).affectedKeys().hasOnly([
+              'usedStorageBytes',
+              'updatedAt'
+            ])
+          )
+        );
+
+      allow delete: if false;
+    }
+
+    // Collection 2: Isolated User Documents
+    match /documents/{documentId} {
+      allow get: if isSignedIn() &&
+        isValidId(documentId) &&
+        existing().userId == request.auth.uid;
+
+      allow list: if isSignedIn() &&
+        existing().userId == request.auth.uid;
+
+      allow create: if isVerifiedUser() &&
+        isValidId(documentId) &&
+        isValidDocument(incoming()) &&
+        incoming().sizeBytes <= 10485760 &&
+        incoming().uploadedAt == request.time &&
+        incoming().updatedAt == request.time &&
+        exists(/databases/$(database)/documents/users/$(incoming().userId)) &&
+        getAfter(/databases/$(database)/documents/users/$(incoming().userId)).data.usedStorageBytes ==
+          get(/databases/$(database)/documents/users/$(incoming().userId)).data.usedStorageBytes + incoming().sizeBytes &&
+        getAfter(/databases/$(database)/documents/users/$(incoming().userId)).data.usedStorageBytes <= 10737418240;
+
+      allow update: if isVerifiedUser() &&
+        isValidId(documentId) &&
+        isValidDocument(incoming()) &&
+        existing().userId == request.auth.uid &&
+        incoming().userId == existing().userId &&
+        incoming().uploadedAt == existing().uploadedAt &&
+        incoming().sizeBytes == existing().sizeBytes &&
+        incoming().type == existing().type &&
+        incoming().updatedAt == request.time && (
+          // Action 1: Rename or Re-categorize Document
+          incoming().diff(existing()).affectedKeys().hasOnly([
+            'name',
+            'category',
+            'updatedAt'
+          ]) ||
+          // Action 2: Toggle Starred / Favorite State
+          incoming().diff(existing()).affectedKeys().hasOnly([
+            'starred',
+            'updatedAt'
+          ])
+        );
+
+      allow delete: if isVerifiedUser() &&
+        isValidId(documentId) &&
+        existing().userId == request.auth.uid &&
+        existsAfter(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.usedStorageBytes >= 0 &&
+        getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.usedStorageBytes <=
+          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.usedStorageBytes;
+    }
+  }
+}

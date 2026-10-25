@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --docu-primary: #2563EB;
+    --docu-dark: #1E3A8A;
+    --docu-light: #DBEAFE;
+    --docu-bg: #F8FAFC;
+    --docu-card: #FFFFFF;
+    --docu-text: #0F172A;
+    --docu-muted: #64748B;
+    --docu-border: #E2E8F0;
+    --docu-success: #16A34A;
+    --docu-danger: #DC2626;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #E2E8F0;
+    color: #0F172A;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+  }
+
+  button,
+  a,
+  select,
+  input[type="checkbox"] {
+    cursor: pointer;
+  }
+}
+
+.font-mono-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Estilos tipográficos para documentos Word (.docx) procesados con Mammoth.js */
+.docucloud-docx-prose {
+  color: #0F172A;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.7;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+.docucloud-docx-prose h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-top: 1.1rem;
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.docucloud-docx-prose h1:first-child,
+.docucloud-docx-prose h2:first-child,
+.docucloud-docx-prose h3:first-child,
+.docucloud-docx-prose p:first-child {
+  margin-top: 0;
+}
+
+.docucloud-docx-prose h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1E3A8A;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.docucloud-docx-prose h3,
+.docucloud-docx-prose h4,
+.docucloud-docx-prose h5,
+.docucloud-docx-prose h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0F172A;
+  margin-top: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.docucloud-docx-prose p {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.docucloud-docx-prose strong,
+.docucloud-docx-prose b {
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.docucloud-docx-prose em,
+.docucloud-docx-prose i {
+  font-style: italic;
+}
+
+.docucloud-docx-prose ul {
+  list-style-type: disc;
+  padding-left: 1.35rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.docucloud-docx-prose ol {
+  list-style-type: decimal;
+  padding-left: 1.35rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.docucloud-docx-prose li {
+  margin-bottom: 0.3rem;
+}
+
+.docucloud-docx-prose blockquote {
+  margin: 0.75rem 0;
+  padding: 0.65rem 0.9rem;
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.75rem;
+  color: #334155;
+}
+
+.docucloud-docx-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 0.75rem auto;
+  display: block;
+}
+
+.docucloud-docx-prose a {
+  color: #2563EB;
+  text-decoration: underline;
+}
+
+.docucloud-docx-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.85rem 0;
+  font-size: 0.8125rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.docucloud-docx-prose th,
+.docucloud-docx-prose td {
+  border: 1px solid #E2E8F0;
+  padding: 0.45rem 0.65rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.docucloud-docx-prose th {
+  background-color: #DBEAFE;
+  color: #1E3A8A;
+  font-weight: 600;
+}
+
+/* Estilos de tabla interactiva para hojas de cálculo Excel / CSV (SheetJS) */
+.docucloud-xlsx-container table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  color: #0F172A;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.docucloud-xlsx-container thead th {
+  background-color: #2563EB;
+  color: #FFFFFF;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #1E3A8A;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.docucloud-xlsx-container tbody td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.docucloud-xlsx-container tbody tr:nth-child(even) td {
+  background-color: #F8FAFC;
+}
+
+.docucloud-xlsx-container tbody tr:hover td {
+  background-color: #DBEAFE;
+}

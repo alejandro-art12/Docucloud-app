@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'error': '#ba1a1a', 'tertiary-container': '#606f80', 'on-background': '#0b1c30', 'surface-variant': '#d3e4fe', 'surface-container': '#e5eeff', 'secondary-container': '#8fa7fe', 'outline': '#737686', 'primary-fixed-dim': '#b4c5ff', 'tertiary': '#485767', 'on-error-container': '#93000a', 'tertiary-fixed': '#d5e4f8', 'on-tertiary-fixed': '#0e1d2b', 'on-secondary-fixed-variant': '#264191', 'surface-tint': '#0053db', 'inverse-primary': '#b4c5ff', 'on-primary-fixed-variant': '#003ea8', 'primary-fixed': '#dbe1ff', 'background': '#f8f9ff', 'surface-bright': '#f8f9ff', 'on-secondary': '#ffffff', 'on-tertiary-container': '#e9f2ff', 'tertiary-fixed-dim': '#b9c8db', 'error-container': '#ffdad6', 'on-secondary-container': '#1d3989', 'secondary': '#4059aa', 'on-surface-variant': '#434655', 'on-primary-container': '#eeefff', 'surface': '#f8f9ff', 'surface-container-highest': '#d3e4fe', 'surface-container-high': '#dce9ff', 'on-secondary-fixed': '#00164e', 'on-primary-fixed': '#00174b', 'inverse-surface': '#213145', 'inverse-on-surface': '#eaf1ff', 'surface-container-low': '#eff4ff', 'outline-variant': '#c3c6d7', 'on-tertiary': '#ffffff', 'surface-container-lowest': '#ffffff', 'surface-dim': '#cbdbf5', 'primary-container': '#2563eb', 'secondary-fixed-dim': '#b6c4ff', 'on-surface': '#0b1c30', 'primary': '#004ac6', 'on-primary': '#ffffff', 'on-tertiary-fixed-variant': '#3a4858', 'on-error': '#ffffff', 'secondary-fixed': '#dce1ff' }, borderRadius: { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, spacing: { 'space-xl': '2rem', 'space-sm': '0.5rem', 'space-md': '1rem', 'gutter': '1rem', 'space-xs': '0.25rem', 'space-lg': '1.5rem', 'margin': '1rem' }, fontFamily: { 'body-md': ['Inter'], 'headline-lg': ['Inter'], 'title-md': ['Inter'], 'display-sm': ['Inter'], 'label-sm': ['Inter'], 'headline-md': ['Inter'], 'body-lg': ['Inter'], 'body-sm': ['Inter'], 'label-lg': ['Inter'], 'label-md': ['Inter'] }, fontSize: { 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'headline-lg': ['24px', { lineHeight: '32px', letterSpacing: '-0.015em', fontWeight: '600' }], 'title-md': ['16px', { lineHeight: '24px', letterSpacing: '-0.005em', fontWeight: '600' }], 'display-sm': ['30px', { lineHeight: '38px', letterSpacing: '-0.02em', fontWeight: '700' }], 'label-sm': ['10px', { lineHeight: '14px', letterSpacing: '0.04em', fontWeight: '600' }], 'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }], 'body-sm': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }], 'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior:none;min-height:max(884px,100dvh);}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><button aria-label="Volver" class="w-11 h-11 flex items-center justify-center text-on-surface rounded-full hover:bg-surface-container-high transition-colors -ml-2" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-title-md text-title-md text-on-surface font-semibold truncate flex-1 text-center pr-9">Cambiar Contraseña</h1></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full pb-8">
+<!-- Header Intro Unit -->
+<div class="px-margin pt-4 pb-2">
+<div class="flex items-center gap-2 mb-1.5">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+</span>
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider font-semibold">Seguridad de Bóveda</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-semibold">Cambiar Contraseña</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Mantén tu bóveda protegida con una contraseña robusta y única.</p>
+</div>
+<!-- Zero-Knowledge Critical Notice -->
+<div class="px-margin my-3">
+<div class="bg-surface-container-low rounded-xl p-4 shadow-sm relative overflow-hidden">
+<div class="flex gap-3">
+<div class="flex-shrink-0 mt-0.5">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-[20px]">shield_lock</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Protocolo Zero-Knowledge</span>
+<span class="bg-primary text-on-primary font-label-sm text-[10px] px-1.5 py-0.5 rounded font-bold">E2EE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Docucloud no almacena tu clave maestra. Si olvidas tu contraseña o frase de recuperación, <span class="font-semibold text-on-surface">no podremos restablecer el acceso</span> a tus archivos cifrados.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Structure -->
+<form class="px-margin flex flex-col gap-5 mt-2" id="password-form" onsubmit="event.preventDefault();">
+<!-- 1. Contraseña Actual -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="font-label-lg text-label-lg text-on-surface font-medium" for="current-password">Contraseña actual</label>
+<button class="font-label-md text-label-md text-primary font-semibold hover:underline" type="button">
+          ¿Olvidaste tu contraseña?
+        </button>
+</div>
+<div class="relative flex items-center">
+<input class="w-full h-12 px-4 pr-12 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest font-body-md text-body-md shadow-sm transition-all" id="current-password" placeholder="••••••••••••" type="password"/>
+<button aria-label="Alternar visibilidad" class="absolute right-0 h-12 w-12 flex items-center justify-center text-outline hover:text-on-surface transition-colors" onclick="toggleVisibility('current-password', this)" type="button">
+<span class="material-symbols-outlined text-[22px]">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- 2. Nueva Contraseña -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface font-medium" for="new-password">Nueva contraseña</label>
+<div class="relative flex items-center">
+<input class="w-full h-12 px-4 pr-12 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none font-body-md text-body-md shadow-sm transition-all" id="new-password" oninput="validatePassword(this.value)" placeholder="Escribe tu nueva contraseña" type="password"/>
+<button aria-label="Alternar visibilidad" class="absolute right-0 h-12 w-12 flex items-center justify-center text-outline hover:text-on-surface transition-colors" onclick="toggleVisibility('new-password', this)" type="button">
+<span class="material-symbols-outlined text-[22px]">visibility_off</span>
+</button>
+</div>
+<!-- Medidor Dinámico de Fortaleza -->
+<div class="flex flex-col gap-1.5 mt-1 bg-surface-container-low p-3 rounded-xl">
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant font-medium">Fortaleza calculada</span>
+<span class="text-outline font-semibold" id="strength-text">Muy débil</span>
+</div>
+<div class="grid grid-cols-4 gap-1.5 w-full h-1.5">
+<div class="h-full rounded-full bg-outline-variant transition-colors duration-300" id="bar-1"></div>
+<div class="h-full rounded-full bg-outline-variant transition-colors duration-300" id="bar-2"></div>
+<div class="h-full rounded-full bg-outline-variant transition-colors duration-300" id="bar-3"></div>
+<div class="h-full rounded-full bg-outline-variant transition-colors duration-300" id="bar-4"></div>
+</div>
+</div>
+</div>
+<!-- Requisitos de Seguridad Dinámicos -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex flex-col gap-2.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold mb-0.5">Requisitos indispensables</span>
+<div class="flex items-center gap-2.5 text-outline transition-colors" id="req-len">
+<span class="material-symbols-outlined text-[18px] transition-transform duration-200">check_circle</span>
+<span class="font-body-sm text-body-sm">Mínimo 8 caracteres (12+ recomendado)</span>
+</div>
+<div class="flex items-center gap-2.5 text-outline transition-colors" id="req-case">
+<span class="material-symbols-outlined text-[18px] transition-transform duration-200">check_circle</span>
+<span class="font-body-sm text-body-sm">Al menos una mayúscula y una minúscula</span>
+</div>
+<div class="flex items-center gap-2.5 text-outline transition-colors" id="req-num">
+<span class="material-symbols-outlined text-[18px] transition-transform duration-200">check_circle</span>
+<span class="font-body-sm text-body-sm">Al menos un número (0-9)</span>
+</div>
+<div class="flex items-center gap-2.5 text-outline transition-colors" id="req-spec">
+<span class="material-symbols-outlined text-[18px] transition-transform duration-200">check_circle</span>
+<span class="font-body-sm text-body-sm">Al menos un carácter especial (@, #, $, etc.)</span>
+</div>
+</div>
+<!-- 3. Confirmar Nueva Contraseña -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="font-label-lg text-label-lg text-on-surface font-medium" for="confirm-password">Confirmar nueva contraseña</label>
+<span class="hidden items-center gap-1 font-label-md text-label-md text-primary font-semibold" id="match-indicator">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+          Coincide
+        </span>
+</div>
+<div class="relative flex items-center">
+<input class="w-full h-12 px-4 pr-12 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline focus:outline-none font-body-md text-body-md shadow-sm transition-all" id="confirm-password" oninput="checkMatch()" placeholder="Repite tu nueva contraseña" type="password"/>
+<button aria-label="Alternar visibilidad" class="absolute right-0 h-12 w-12 flex items-center justify-center text-outline hover:text-on-surface transition-colors" onclick="toggleVisibility('confirm-password', this)" type="button">
+<span class="material-symbols-outlined text-[22px]">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Opción de Desconexión Remota -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex items-center justify-between gap-4">
+<div class="flex items-center gap-3 min-w-0">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface font-medium truncate">Cerrar sesión global</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Desconectar todos los demás dispositivos</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+<input checked="" class="sr-only peer" id="revoke-devices" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-on-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Botones de Acción -->
+<div class="flex flex-col gap-2.5 pt-2">
+<button class="w-full h-12 bg-primary-container text-on-primary rounded-xl font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-md hover:bg-primary active:scale-[0.99] transition-all" id="submit-btn" onclick="simulateSuccess()" type="button">
+<span class="material-symbols-outlined text-[20px]">key</span>
+        Actualizar contraseña
+      </button>
+<button class="w-full h-12 bg-surface-container-low text-on-surface rounded-xl font-label-lg text-label-lg font-semibold flex items-center justify-center hover:bg-surface-container active:scale-[0.99] transition-all" onclick="window.history.back()" type="button">
+        Cancelar
+      </button>
+</div>
+</form>
+<!-- Security Footer Badge -->
+<div class="px-margin mt-6 mb-2 flex flex-col items-center justify-center text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold tracking-wide uppercase">Cifrado Militar AES-256-GCM / SHA-256</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1.5 text-center max-w-xs">
+      Las contraseñas se computan mediante derivación de clave Argon2id antes de ser propagadas.
+    </p>
+</div>
+</div>
+<script>
+  function toggleVisibility(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.textContent = 'visibility';
+      icon.classList.add('text-primary');
+    } else {
+      input.type = 'password';
+      icon.textContent = 'visibility_off';
+      icon.classList.remove('text-primary');
+    }
+  }
+
+  function validatePassword(pwd) {
+    const hasLen = pwd.length >= 8;
+    const hasCase = /[A-Z]/.test(pwd) && /[a-z]/.test(pwd);
+    const hasNum = /[0-9]/.test(pwd);
+    const hasSpec = /[^A-Za-z0-9]/.test(pwd);
+
+    updateRequirement('req-len', hasLen);
+    updateRequirement('req-case', hasCase);
+    updateRequirement('req-num', hasNum);
+    updateRequirement('req-spec', hasSpec);
+
+    let score = 0;
+    if (pwd.length > 0) score += 1;
+    if (hasLen && (hasCase || hasNum)) score += 1;
+    if (hasLen && hasCase && hasNum) score += 1;
+    if (hasLen && hasCase && hasNum && hasSpec) score += 1;
+    if (pwd.length >= 12 && hasLen && hasCase && hasNum && hasSpec) score = 4;
+
+    const bars = [
+      document.getElementById('bar-1'),
+      document.getElementById('bar-2'),
+      document.getElementById('bar-3'),
+      document.getElementById('bar-4')
+    ];
+    const strengthLabel = document.getElementById('strength-text');
+
+    bars.forEach(b => {
+      b.className = 'h-full rounded-full bg-outline-variant transition-colors duration-300';
+    });
+
+    if (pwd.length === 0) {
+      strengthLabel.textContent = 'Sin datos';
+      strengthLabel.className = 'text-outline font-semibold';
+      checkMatch();
+      return;
+    }
+
+    if (score === 1) {
+      strengthLabel.textContent = 'Débil';
+      strengthLabel.className = 'text-error font-semibold';
+      bars[0].className = 'h-full rounded-full bg-error transition-colors duration-300';
+    } else if (score === 2) {
+      strengthLabel.textContent = 'Aceptable';
+      strengthLabel.className = 'text-secondary font-semibold';
+      bars[0].className = 'h-full rounded-full bg-secondary transition-colors duration-300';
+      bars[1].className = 'h-full rounded-full bg-secondary transition-colors duration-300';
+    } else if (score === 3) {
+      strengthLabel.textContent = 'Buena';
+      strengthLabel.className = 'text-primary font-semibold';
+      bars[0].className = 'h-full rounded-full bg-primary transition-colors duration-300';
+      bars[1].className = 'h-full rounded-full bg-primary transition-colors duration-300';
+      bars[2].className = 'h-full rounded-full bg-primary transition-colors duration-300';
+    } else {
+      strengthLabel.textContent = 'Fuerte';
+      strengthLabel.className = 'text-primary-container font-semibold';
+      bars.forEach(b => b.className = 'h-full rounded-full bg-primary-container transition-colors duration-300');
+    }
+
+    checkMatch();
+  }
+
+  function updateRequirement(id, met) {
+    const el = document.getElementById(id);
+    const icon = el.querySelector('.material-symbols-outlined');
+    if (met) {
+      el.classList.remove('text-outline');
+      el.classList.add('text-primary');
+      icon.setAttribute('style', "font-variation-settings: 'FILL' 1;");
+    } else {
+      el.classList.remove('text-primary');
+      el.classList.add('text-outline');
+      icon.removeAttribute('style');
+    }
+  }
+
+  function checkMatch() {
+    const pwd = document.getElementById('new-password').value;
+    const confirm = document.getElementById('confirm-password').value;
+    const indicator = document.getElementById('match-indicator');
+
+    if (confirm.length > 0 && pwd === confirm) {
+      indicator.classList.remove('hidden');
+      indicator.classList.add('flex');
+    } else {
+      indicator.classList.add('hidden');
+      indicator.classList.remove('flex');
+    }
+  }
+
+  function simulateSuccess() {
+    const pwd = document.getElementById('new-password').value;
+    const confirm = document.getElementById('confirm-password').value;
+    const btn = document.getElementById('submit-btn');
+
+    if (!pwd || pwd !== confirm) {
+      btn.classList.add('animate-pulse');
+      setTimeout(() => btn.classList.remove('animate-pulse'), 400);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = `<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span> Cifrando y actualizando...`;
+    
+    setTimeout(() => {
+      btn.innerHTML = `<span class="material-symbols-outlined text-[20px]">check_circle</span> Contraseña Actualizada`;
+      btn.classList.remove('bg-primary-container');
+      btn.classList.add('bg-secondary');
+    }, 1200);
+  }
+</script></main></body></html>
